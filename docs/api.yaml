@@ -1,0 +1,204 @@
+openapi: 3.0.1
+info:
+  version: "1.0"
+  title: "Wishlist"
+  description: |
+   This API provides wishlist functionality, including adding/removing wishlist items and sharing token.
+paths:
+  /store/customers/me/wishlist:
+    get:
+      tags:
+      - "wishlist"
+      summary: "Get my wishlist"
+      responses:
+        "200":
+          description: "Returns wishlist"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  created_at:
+                    type: string
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/WishlistItem'
+        "400":
+          description: "Not OK"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+
+  /store/customers/me/wishlist/items:
+    post:
+      tags:
+      - "items"
+      summary: "Update wishlist items"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                quantity:
+                  type: number
+                productVariantId:
+                  type: string
+                productId:
+                  type: string
+      responses:
+        "201":
+          description: "Returns wishlist"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  created_at:
+                    type: string
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/WishlistItem'
+                  
+                      
+        "400":
+          description: "Not OK"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /store/customers/me/wishlist/items/{productId}/{productVariantId}:
+    delete:
+      tags:
+      - "items"
+      summary: "Delete wishlist item"
+      parameters:
+      - in: path
+        name: productVariantId
+        schema:
+          type: string
+        required: true
+        description: Product Variant Id
+      - in: path
+        name: productId
+        schema:
+          type: string
+        required: true
+        description: Product Id
+      responses:
+        "201":
+          description: "Returns wishlist"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  created_at:
+                    type: string
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/WishlistItem'
+        "400":
+          description: "Not OK"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+
+  /store/customers/me/wishlist/share-token:
+    post:
+      tags:
+      - "wishlist"
+      summary: "Get wishlist token for sharing wishlist"
+      responses:
+        "201":
+          description: "Returns token"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  shared_token:
+                    type: string
+        "422":
+          description: "Not OK"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /store/wishlists/{token}:
+    get:
+      tags:
+      - "wishlist"
+      summary: "Get shared wishlist based on the token"
+      parameters:
+        - in: path
+          name: token
+          schema:
+            type: string
+          required: true
+          description: Shared token
+      responses:
+        "200":
+          description: "Returns token"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  created_at:
+                    type: string
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/WishlistItem'
+        "400":
+          description: "Not OK"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+
+components:
+  schemas:
+    WishlistItem:
+      type: object
+      properties:
+        id:
+          type: string
+        quantity:
+          type: number
+        productId:
+          type: string
+        productVariantId:
+          type: string
+        created_at:
+          type: string
