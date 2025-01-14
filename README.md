@@ -22,6 +22,15 @@ Add module to `medusa-config.js`:
   }
 ```
 
+Update your `package.json`: 
+
+```json
+"dependencies": {
+  ...
+  "jsonwebtoken": "^9.0.2"
+}
+```
+
 ### Database migration
 
 Medusa Wishlist introduces new models in database. To have it working, you need to firstly execute migrations:
