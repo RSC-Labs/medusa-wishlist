@@ -18,10 +18,8 @@ class WishlistModuleService extends MedusaService({
     super(...arguments)
 
     this.options_ = {
-      jwtSecret: options.jwtSecret ?? '',
+      jwtSecret: options && options.jwtSecret ? options.jwtSecret : '',
     }
-
-    this.options_ = options;
   }
 
   async deleteItem(wishlistId: string, productId: string, productVariantId: string) {
