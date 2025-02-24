@@ -6,9 +6,34 @@ Medusa Wishlist provides functionality which stores wishlist items in a list, wh
 
 ## Installation
 
-### Plugin system
 
-Plugins are not yet supported in Medusa 2.0, so this part is TODO.
+1. Install plugin by adding to your `package.json`:
+
+```json
+...
+"@rsc-labs/medusa-wishlist": "0.0.3" // or other available version
+...
+```
+and execute install, e.g. `yarn install`.
+
+2. Add plugin to your `medusa-config.js`:
+
+```js
+...
+plugins: [
+    {
+      resolve: "@rsc-labs/medusa-wishlist",
+    }
+]
+...
+```
+
+### Database migration
+
+Medusa Wishlist introduces new models in database. To have it working, you need to firstly execute migrations:
+```bash
+npx medusa db:migrate
+```
 
 ### Copy the code
 

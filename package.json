@@ -1,12 +1,20 @@
 {
   "name": "@rsc-labs/medusa-wishlist",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "The plugin which provides wishlist functionality.",
   "author": "RSC Labs (https://rsoftcon.com)",
   "license": "MIT",
   "files": [
     ".medusa/server"
   ],
+  "exports": {
+    "./package.json": "./package.json",
+    "./workflows": "./.medusa/server/src/workflows/index.js",
+    "./.medusa/server/src/modules/*": "./.medusa/server/src/modules/*/index.js",
+    "./modules/*": "./.medusa/server/src/modules/*/index.js",
+    "./providers/*": "./.medusa/server/src/providers/*/index.js",
+    "./*": "./.medusa/server/src/*.js"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/RSC-Labs/medusa-wishlist"
