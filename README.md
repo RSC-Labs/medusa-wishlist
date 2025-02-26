@@ -23,8 +23,15 @@ and execute install, e.g. `yarn install`.
 plugins: [
     {
       resolve: "@rsc-labs/medusa-wishlist",
+      options: {}
     }
 ]
+...
+```
+or
+```js
+...
+plugins: ["@rsc-labs/medusa-wishlist"]
 ...
 ```
 
@@ -78,7 +85,7 @@ Wishlist can be shared by using token.
 Sharing functionality uses JWT to generate a token. To have it properly working, you shall set `jwtSecret` in options, e.g.:
 ```js
   {
-    resolve: "./modules/wishlist",
+    resolve: "@rsc-labs/medusa-wishlist",
     options: {
       jwtSecret: 'supersecret'
     }
